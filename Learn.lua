@@ -1,14 +1,13 @@
-if not _G.GPTControl then return end
+if not _G.GPTLearning then return end
 
-local player = game.Players.LocalPlayer
-local char = player.Character or player.CharacterAdded:Wait()
-local hum = char:WaitForChild("Humanoid")
-local hrp = char:WaitForChild("HumanoidRootPart")
+local RunService = game:GetService("RunService")
 
--- Simulación básica de movimiento automatizado
-while _G.GPTControl and task.wait(0.5) do
-    if hrp then
-        hrp.CFrame = hrp.CFrame * CFrame.new(1, 0, 0) -- se mueve a la derecha
-        print("🤖 GPT movió al jugador...")
+RunService.RenderStepped:Connect(function()
+    local char = game.Players.LocalPlayer.Character
+    if char and char:FindFirstChild("HumanoidRootPart") then
+        local pos = char.HumanoidRootPart.Position
+        -- Aquí es donde se "aprende" lo que el jugador hace (simulado)
+        print("📍 Posición observada: ", pos)
     end
-end
+end)
+
